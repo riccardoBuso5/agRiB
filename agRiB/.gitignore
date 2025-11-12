@@ -1,0 +1,24 @@
+# Ignore build outputs
+/bin/
+/obj/
+
+# Visual Studio / VB.NET user files
+*.user
+*.suo
+*.userosscache
+
+# Ignore generated publish profiles and local settings
+My Project/PublishProfiles/
+
+# Ignore password/config files
+paswd.txt
+
+# NuGet packages and nupkg outputs
+*.nupkg
+
+# VS Code, Rider, etc.
+.vscode/
+.idea/
+
+# Other
+*.vs/
