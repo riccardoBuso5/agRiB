@@ -1,5 +1,4 @@
-﻿
-Imports System.IO
+﻿Imports System.IO
 Imports ClosedXML.Excel
 Imports MySql.Data.MySqlClient
 
@@ -7,36 +6,43 @@ Imports MySql.Data.MySqlClient
 Module funzioni
     Public conn As MySqlConnection
     Public flag = False
-
-
+    Dim strConn As String = "server=localhost;database=cantina;user id=root;password=password;port=3306;CharSet=utf8;"
     'exe'
-    Public Function leggiDaFile(Optional path As String = ".\paswd.txt")
-        Dim fileReader As String
+    Public Function leggiDaFile(Optional path As String = ".\paswd.txt") As String
         Try
-            fileReader = My.Computer.FileSystem.ReadAllText(path)
-            Return fileReader
+            Dim fileReader As String = My.Computer.FileSystem.ReadAllText(path)
+            Return fileReader.Trim()
+        Catch ex As FileNotFoundException
+            MsgBox("File " & path & " non trovato!" & vbCrLf & "Creare il file con la stringa di connessione.")
+            Return Nothing
         Catch ex As Exception
-            MsgBox("file non trovato")
+            MsgBox("Errore lettura file: " & ex.Message)
+            Return Nothing
         End Try
-        fileReader = My.Computer.FileSystem.ReadAllText(path)
-        Return fileReader
     End Function
 
 
-    Public Function Connetti()
-        If flag = True Then
+    Public Function Connetti() As MySqlConnection
+        ' Controlla se la connessione è già aperta e valida
+        If flag = True AndAlso conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then
             Return conn
         End If
+        'decommentare prima di pubblicare'
+        'strConn = leggiDaFile()'
 
-        Dim strConn As String = "server= localhost; database=cantina;user id=root;password=password;port=3306;"
-        conn = New MySqlConnection(strConn)
-        flag = True
-        Return conn
-
+        Try
+            conn = New MySqlConnection(strConn)
+            conn.Open() ' APRI SUBITO la connessione
+            flag = True
+            Return conn
+        Catch ex As MySqlException
+            flag = False
+            MsgBox("Errore connessione MySQL (" & ex.Number & "): " & ex.Message)
+            Return Nothing
+        End Try
     End Function
 
-    Public Function StampaTabellaIntera(conn As MySqlConnection)
-
+    Public Function StampaTabellaIntera(conn As MySqlConnection) As DataTable
         Dim str As String = "SELECT * 
                             FROM lotto
                             JOIN vendita ON lotto.idlotto = vendita.idLotto
@@ -44,127 +50,160 @@ Module funzioni
                             JOIN tipologia ON tipologia.idtipologia = tipologia_lotto.id_tipologia;"
 
 
+        ' NON chiudere la connessione prima del Fill!
         Dim da As New MySqlDataAdapter(str, conn)
-        conn.Close()
         Dim ds As New DataSet()
-
         da.Fill(ds)
-        Dim table As DataTable = ds.Tables(0)
-
-        Return table
-
-
-
-    End Function
-
-
-    Public Function DoQuery(conn As MySqlConnection, query As String)
-
-        If (query.Equals("")) Then
-            Throw New Exception
-        End If
-
-
-        Dim da As New MySqlDataAdapter(query, conn) 'preleva i dati dal DB'
-        Dim ds As New DataSet() 'crea la tabella'
-        da.Fill(ds) 'inserisce i dati nella tabella'
-
 
         Return ds.Tables(0)
-
-
     End Function
 
-    Public Function Esegui(query As String)
 
-        If (query.Equals("")) Then
+    Public Function DoQuery(conn As MySqlConnection, query As String) As DataTable
+        Dim da As New MySqlDataAdapter(query, conn)
+        Dim ds As New DataSet()
+        da.Fill(ds)
+
+        Return ds.Tables(0)
+    End Function
+
+    Public Function Esegui(query As String) As Object
+        If String.IsNullOrEmpty(query) Then
             Return 0
         End If
 
         Dim conn As MySqlConnection = Connetti()
-        conn.Open()
 
-        Dim cmd As New MySqlCommand(query, conn)
-        Dim Reader = cmd.ExecuteScalar
+        If conn Is Nothing OrElse conn.State <> ConnectionState.Open Then
+            Return 0
+        End If
 
-        conn.Close()
-        Return Reader
-
-
+        Try
+            Dim cmd As New MySqlCommand(query, conn)
+            Dim Reader = cmd.ExecuteScalar()
+            Return Reader
+        Finally
+            conn.Close()
+        End Try
     End Function
 
     'ricerca'
 
-    Public Function isCollegato(idLotto, idTipologia)
-        Dim str As String = "select count(*) 
-                            from tipologia_lotto
-                            where id_tipologia =" + idTipologia + "
-                            and id_lotto =" + idLotto + ";"
-        If Esegui(str) > 0 Then
-            Return True
-        Else
-            Return False
+    Public Function ricercaPerCodLotto(codLotto As String) As DataTable
+        Dim query As String = "SELECT lotto.idlotto, data_produzione, numBott AS numeroBottDisponibiliPerTipologia, nome AS tipologia
+                           FROM lotto
+                           JOIN tipologia_lotto ON lotto.idlotto = tipologia_lotto.id_lotto
+                           JOIN tipologia ON tipologia.idtipologia = tipologia_lotto.id_tipologia
+                           WHERE lotto.idLotto = @codLotto;"
+
+        Dim conn As MySqlConnection = Connetti()
+
+        ' Connetti() apre già la connessione
+        If conn Is Nothing Then
+            Return New DataTable()
         End If
 
+        Try
+            Dim cmd As New MySqlCommand(query, conn)
+            cmd.Parameters.AddWithValue("@codLotto", codLotto)
+
+            Dim da As New MySqlDataAdapter(cmd)
+            Dim ds As New DataSet()
+            da.Fill(ds)
+
+            Return ds.Tables(0)
+        Finally
+            If conn.State = ConnectionState.Open Then
+                conn.Close()
+            End If
+        End Try
     End Function
 
+    Public Function ricercaPerCodTipo(codTipo As String) As DataTable
+        Dim query As String = "SELECT lotto.idlotto, data_produzione, numBott AS numeroBottPerTipologia, nome AS tipologia
+                           FROM lotto
+                           JOIN tipologia_lotto ON lotto.idlotto = tipologia_lotto.id_loto
+                           JOIN tipologia ON tipologia.idtipologia = tipologia_lotto.id_tipologia
+                           WHERE tipologia.idTipologia = @codTipo;"
 
-    Public Function ricercaPerCodLotto(codLotto)
-        Dim query =
-        " SELECT lotto.idlotto, data_produzione, numBott As numeroBottDisponibiliPerTipologia, nome As tipologia
-        From lotto
-        Join tipologia_lotto On lotto.idlotto = tipologia_lotto.id_lotto
-        Join tipologia On tipologia.idtipologia = tipologia_lotto.id_tipologia
-        Where lotto.idLotto =" + codLotto + ";"
+        Dim conn As MySqlConnection = Connetti()
+        If conn Is Nothing Then Return New DataTable()
 
-        Dim ds As DataTable = DoQuery(Connetti(), query)
-        Return ds
+        Try
+            Dim cmd As New MySqlCommand(query, conn)
+            cmd.Parameters.AddWithValue("@codTipo", codTipo)
 
+            Dim da As New MySqlDataAdapter(cmd)
+            Dim ds As New DataSet()
+            da.Fill(ds)
+
+            Return ds.Tables(0)
+        Finally
+            If conn.State = ConnectionState.Open Then
+                conn.Close()
+            End If
+        End Try
     End Function
 
-    Public Function ricercaPerCodTipo(codTipo)
-        Dim query =
-        "SELECT lotto.idlotto, data_produzione, numBott As numeroBottPerTipologia , nome As tipologia
-        From lotto
-        Join tipologia_lotto On lotto.idlotto = tipologia_lotto.id_lotto
-        Join tipologia On tipologia.idtipologia = tipologia_lotto.id_tipologia
-        where tipologia.idTipologia =" + codTipo + ";"
-
-        Dim ds As DataTable = DoQuery(Connetti(), query)
-        Return ds
-
-    End Function
-
-    Public Function controllaScadenze()
+    Public Function controllaScadenze() As DataTable
         Dim scadenza As DateTime = Today.AddDays(7)
-        Dim query As String = "select * from vendita where data_vendita <=  '" + scadenza.ToString("yyyy-MM-dd") + " ' and effettuata_programmata = 'programmata'"
-        Dim ds As DataTable = DoQuery(Connetti(), query)
+        Dim query As String = "SELECT * FROM vendita 
+                          WHERE data_vendita <= @scadenza 
+                          AND effettuata_programmata = 'programmata'"
 
-        Return ds
+        Dim conn As MySqlConnection = Connetti()
+        If conn Is Nothing Then Return New DataTable()
 
+        Try
+            Dim cmd As New MySqlCommand(query, conn)
+            cmd.Parameters.AddWithValue("@scadenza", scadenza.ToString("yyyy-MM-dd"))
+
+            Dim da As New MySqlDataAdapter(cmd)
+            Dim ds As New DataSet()
+            da.Fill(ds)
+
+            Return ds.Tables(0)
+        Finally
+            If conn.State = ConnectionState.Open Then
+                conn.Close()
+            End If
+        End Try
     End Function
 
-    Public Function lottiDaRifornire()
-        Dim query As String = "select * from lotto where num_bottiglie < 1000 "
-
+    Public Function lottiDaRifornire() As DataTable
+        Dim query As String = "select * from lotto where num_bottiglie < 1000"
         Dim ds As DataTable = DoQuery(Connetti(), query)
-        Return ds
-
-    End Function
-
-    Public Function controllaDate()
-        Dim query As String = "select * from  vendita where data_vendita <= ' " + Today.ToString("yyyy-MM-dd") + "' and effettuata_programmata = 'programmata'"
-        Dim ds As DataTable = DoQuery(Connetti(), query)
-        'spunta le vendite da programmate ad effettuate'
         Return ds
     End Function
 
-    Public Function get_numBot_usate_perLotto(idLotto)
+    Public Function controllaDate() As DataTable
+        Dim query As String = "SELECT * FROM vendita 
+                          WHERE data_vendita <= @oggi 
+                          AND effettuata_programmata = 'programmata'"
 
-        Dim query = "SELECT
-                    SUM(numBott) AS sum_quantity
+        Dim conn As MySqlConnection = Connetti()
+        If conn Is Nothing Then Return New DataTable()
+
+        Try
+            Dim cmd As New MySqlCommand(query, conn)
+            cmd.Parameters.AddWithValue("@oggi", Today.ToString("yyyy-MM-dd"))
+
+            Dim da As New MySqlDataAdapter(cmd)
+            Dim ds As New DataSet()
+            da.Fill(ds)
+
+            Return ds.Tables(0)
+        Finally
+            If conn.State = ConnectionState.Open Then
+                conn.Close()
+            End If
+        End Try
+    End Function
+
+    Public Function get_numBot_usate_perLotto(idLotto As String) As Object
+        Dim query = "SELECT SUM(numBott) AS sum_quantity
                     FROM tipologia_lotto 
-                    where id_lotto = " + idLotto.ToString()
+                    WHERE id_lotto = " & idLotto.ToString()
 
         Dim num = Esegui(query)
         If num IsNot DBNull.Value Then
@@ -174,36 +213,32 @@ Module funzioni
         Return 0
     End Function
 
-    Public Function get_numBott_lotto(idLotto)
-        Dim query = "select num_bottiglie from lotto where idLotto = " + idLotto.ToString()
+    Public Function get_numBott_lotto(idLotto As String) As String
+        Dim query = "select num_bottiglie from lotto where idLotto = " & idLotto.ToString()
         Dim ds As DataTable = DoQuery(Connetti(), query)
         Return ds.Rows(0)(0).ToString()
     End Function
 
-    Public Function get_num_bott_per_combo(idCombinazione As String)
-
-        Dim query = "select numBott from tipologia_lotto where id= " + idCombinazione.ToString()
+    Public Function get_num_bott_per_combo(idCombinazione As String) As String
+        Dim query = "select numBott from tipologia_lotto where id = " & idCombinazione.ToString()
         Dim ds As DataTable = DoQuery(Connetti(), query)
         Return ds.Rows(0)(0).ToString()
     End Function
 
 
-    Public Function trovaNomeTipologiaFromid(Id As String)
-        Dim query As String = "select nome from tipologia where idTipologia = " + Id + ""
+    Public Function trovaNomeTipologiaFromid(Id As String) As String
+        Dim query As String = "select nome from tipologia where idTipologia = " & Id
         Dim ds As DataTable = DoQuery(Connetti(), query)
         Dim nomeTipologia As String = ds.Rows(0)(0).ToString()
-
         Return nomeTipologia
     End Function
 
-    Public Function trovaIdTipologiaFromNome(nome As String)
-        Dim query As String = "select idTipologia from tipologia where nome = '" + nome + "'"
+    Public Function trovaIdTipologiaFromNome(nome As String) As String
+        Dim query As String = "select idTipologia from tipologia where nome = '" & nome & "'"
         Dim ds As DataTable = DoQuery(Connetti(), query)
         Dim id As String = ds.Rows(0)(0).ToString()
-
         Return id
     End Function
-
 
     'inserisci'
 
@@ -317,39 +352,58 @@ Module funzioni
 
     'get'
 
-    Public Function getVendite()
-        Dim str = "SELECT idvendita,numBottiglie,effettuata_programmata as stato, data_vendita, l.idLotto, nome as tipologia, cliente, note
-                   FROM vendita
-                   JOIN tipologia_lotto AS t1 ON vendita.id_combo = t1.id
-                   JOIN lotto AS l ON l.idlotto = t1.id_lotto
-                   JOIN tipologia AS t3 ON t3.idtipologia = t1.id_tipologia;"
+    Public Function getVendite() As DataTable
+        ' Forza l'uso dell'indice composto
+        Dim str As String = "SELECT v.idvendita, v.numBottiglie, v.effettuata_programmata AS stato, 
+                         v.data_vendita, l.idLotto, t.nome AS tipologia, v.cliente, v.note
+                         FROM vendita v USE INDEX (idx_vendita_data_combo)
+                         STRAIGHT_JOIN tipologia_lotto tl ON v.id_combo = tl.id
+                         STRAIGHT_JOIN lotto l ON l.idlotto = tl.id_lotto
+                         STRAIGHT_JOIN tipologia t ON t.idtipologia = tl.id_tipologia
+                         ORDER BY v.data_vendita DESC;"
 
+        Using localConn As New MySqlConnection(strConn)
+            Try
+                localConn.Open()
 
-        Return DoQuery(Connetti, str)
+                Dim da As New MySqlDataAdapter(str, localConn)
+                da.SelectCommand.CommandTimeout = 30
 
+                Dim ds As New DataSet()
+                da.Fill(ds)
+
+                If ds.Tables.Count > 0 Then
+                    Return ds.Tables(0)
+                Else
+                    Return New DataTable()
+                End If
+
+            Catch ex As MySqlException
+                MsgBox("Errore database: " & ex.Message)
+                Return New DataTable()
+            Catch ex As Exception
+                MsgBox("Errore caricamento vendite: " & ex.Message)
+                Return New DataTable()
+            End Try
+        End Using
     End Function
 
-    Public Function getLotti()
-        Dim str As String = "
-            SELECT  l.data_produzione, l.idlotto,l.num_bottiglie
-            FROM lotto l"
-
-        Return DoQuery(Connetti, str)
+    Public Function getLotti() As DataTable
+        Dim str As String = "SELECT l.data_produzione, l.idlotto, l.num_bottiglie FROM lotto l"
+        Return DoQuery(Connetti(), str)
     End Function
 
-    Public Function getTipologie()
+    Public Function getTipologie() As DataTable
         Dim str = "select nome from tipologia"
-        Return DoQuery(Connetti, str)
+        Return DoQuery(Connetti(), str)
     End Function
 
-    Public Function getLottiPerTipologie()
-        Dim str As String = "SELECT  l.data_produzione, l.idlotto,tl.numBott,t.nome as tipologia
-                            FROM lotto l
-                            JOIN tipologia_lotto tl ON l.idlotto = tl.id_lotto
-                            JOIN tipologia t ON tl.id_tipologia = t.idtipologia;"
-
-
-        Return DoQuery(Connetti, str)
+    Public Function getLottiPerTipologie() As DataTable
+        Dim str As String = "SELECT l.data_produzione, l.idlotto, tl.numBott, t.nome as tipologia
+                        FROM lotto l
+                        JOIN tipologia_lotto tl ON l.idlotto = tl.id_lotto
+                        JOIN tipologia t ON tl.id_tipologia = t.idtipologia;"
+        Return DoQuery(Connetti(), str)
     End Function
 
 
@@ -429,16 +483,38 @@ Module funzioni
 
     End Function
 
-    Public Function abs(num)
-        If (num < 0) Then
+    Public Function abs(num As Decimal) As Decimal
+        If num < 0 Then
             Return num * -1
         Else
-            If (num >= 0) Then
-                Return num
-            End If
+            Return num
         End If
     End Function
 
+    Public Function isCollegato(idLotto As String, idTipologia As String) As Boolean
+        Dim query As String = "SELECT COUNT(*) 
+                          FROM tipologia_lotto
+                          WHERE id_tipologia = @idTipologia
+                          AND id_lotto = @idLotto;"
 
+        Dim conn As MySqlConnection = Connetti()
+        If conn Is Nothing Then Return False
+
+        Try
+            Dim cmd As New MySqlCommand(query, conn)
+            cmd.Parameters.AddWithValue("@idTipologia", idTipologia)
+            cmd.Parameters.AddWithValue("@idLotto", idLotto)
+
+            Dim count = Convert.ToInt32(cmd.ExecuteScalar())
+            Return count > 0
+        Catch ex As Exception
+            MsgBox("Errore verifica collegamento: " & ex.Message)
+            Return False
+        Finally
+            If conn.State = ConnectionState.Open Then
+                conn.Close()
+            End If
+        End Try
+    End Function
 
 End Module
