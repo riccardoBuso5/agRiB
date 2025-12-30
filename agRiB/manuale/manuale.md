@@ -46,7 +46,7 @@ Questo manuale è destinato alle segretarie e al personale amministrativo che ut
 ### 2.1 Avvio del Programma
 1. Fare doppio clic sull'icona **Gestionale Cantina** sul desktop
 2. Attendere il caricamento dell'interfaccia principale
-3. Verificare la connessione al database (indicatore in basso a sinistra)
+3. Verificare la connessione al database 
 
 ⚠️ **IMPORTANTE**: Se appare il messaggio "Errore connessione MySQL", contattare il supporto tecnico.
 
@@ -58,29 +58,29 @@ La schermata principale è suddivisa in sezioni:
 ## 3. GESTIONE LOTTI
 
 ### 3.1 Cosa Sono i Lotti
-Un **lotto** rappresenta una produzione specifica di vino, identificata da:
-- **Codice Lotto**: Numero univoco (es. 2024001)
-- **Data di Produzione**: Quando è stato imbottigliato
-- **Numero Bottiglie**: Quantità totale prodotta
+Un **lotto** rappresenta una produzione specifica di bottiglie vuote, identificata da:
+- **Codice Lotto**: Numero univoco (es. 240101)
+- **Data di Produzione**: Quando è stato prodotto
+- **Numero Bottiglie**: Quantità totale di bottiglie vuote
 
 ### 3.2 Inserire un Nuovo Lotto
 
 #### Procedura Passo-Passo
 
 1️⃣ **Accedere alla Gestione Lotti**
-   - Cliccare su **"Gestione Lotti"** nel menu principale
+   - posizionarsi su **"aggiungi"** nel menu principale
    - Selezionare **"Nuovo Lotto"**
 
 2️⃣ **Compilare i Campi Obbligatori**
 
 | Campo | Descrizione | Esempio |
 |-------|-------------|---------|
-| **Codice Lotto** | Numero univoco progressivo | 2024001 |
+| **Codice Lotto** | Numero univoco progressivo | 240101 |
 | **Data Produzione** | Data imbottigliamento | 15/12/2024 |
 | **Numero Bottiglie** | Quantità totale prodotta | 5000 |
 
 3️⃣ **Salvare il Lotto**
-   - Cliccare su **"Salva"**
+   - Cliccare su **"conferma"**
    - Confermare l'operazione
    - Apparirà il messaggio: *"Inserimento riuscito"*
 
@@ -90,12 +90,12 @@ Un **lotto** rappresenta una produzione specifica di vino, identificata da:
 
 ### 3.3 Modificare un Lotto Esistente
 
-1. Aprire **"Gestione Lotti"** → **"Modifica Lotto"**
+1. andare su **"Modifica"** → **"Modifica Lotto"**
 2. Selezionare il lotto dal menu a tendina
 3. Modificare i campi necessari:
    - Data di produzione
    - Numero bottiglie
-4. Cliccare **"Salva Modifiche"**
+4. Cliccare **"Conferma"**
 
 📝 **NOTA**: Non è possibile modificare il codice lotto una volta creato.
 
@@ -106,7 +106,7 @@ Un **lotto** rappresenta una produzione specifica di vino, identificata da:
 - Non è associato a tipologie
 
 **Procedura:**
-1. Aprire **"Gestione Lotti"** → **"Elimina Lotto"**
+1. posizionarsi su **"elimina"** → **"Elimina Lotto"**
 2. Selezionare il lotto da eliminare
 3. Confermare l'eliminazione
 4. Se il lotto è collegato, apparirà: *"Non puoi cancellare un lotto se è collegato"*
@@ -114,7 +114,7 @@ Un **lotto** rappresenta una produzione specifica di vino, identificata da:
 ### 3.5 Visualizzare i Lotti
 
 **Vista Tabellare**
-- Aprire **"Gestione Lotti"** → **"Visualizza Tutti"**
+- posizionarsi su  **"visualizza"** → **"Visualizza Tutti"**
 - La tabella mostra:
   - Codice Lotto
   - Data Produzione
@@ -131,11 +131,9 @@ Un **lotto** rappresenta una produzione specifica di vino, identificata da:
 Il sistema avvisa automaticamente quando un lotto ha **meno di 1000 bottiglie**.
 
 **Come Visualizzarli:**
-1. Menu principale → **"Alert Lotti"**
-2. Appare la lista dei lotti con giacenze basse
-3. Contattare la produzione per rifornimento
-
-🔔 **ALERT**: L'icona ⚠️ indica lotti critici.
+1. posizionarsi su  **"visualizza"** 
+2. cliccare **"visualizza lotti da rifornire"**
+3. Appare la lista dei lotti con giacenze basse
 
 ---
 
@@ -146,9 +144,9 @@ Le **tipologie** rappresentano i diversi vini prodotti (es. Merlot, Chardonnay, 
 
 ### 4.2 Inserire una Nuova Tipologia
 
-1. Menu → **"Gestione Tipologie"** → **"Nuova Tipologia"**
+1. Menu → **"aggiungi"** → **"Nuova Tipologia"**
 2. Inserire il nome (es. "Merlot Riserva 2023")
-3. Cliccare **"Salva"**
+3. Cliccare **"conferma"**
 
 ### 4.3 Collegare Lotto e Tipologia
 
@@ -159,17 +157,17 @@ Un lotto può contenere più tipologie. Ad esempio:
 
 **Procedura di Collegamento:**
 
-1️⃣ Aprire **"Collega Lotto-Tipologia"**
+1️⃣ Aprire **"Collega Lotto-Tipologia"** dal menu **"modifica"**
 
 2️⃣ Selezionare:
-   - **Lotto**: Scegliere il codice lotto (es. 2024001)
+   - **Lotto**: Scegliere il codice lotto (es. 240101)
    - **Tipologia**: Scegliere il vino (es. Merlot)
    - **Numero Bottiglie**: Quante bottiglie di quella tipologia
 
 3️⃣ Cliccare **"Collega"**
 
 **Esempio Pratico:**
-- Si desidera collegare 1000 bottiglie di "Merlot Riserva 2023" al lotto 2024001.
+- Si desidera collegare 1000 bottiglie di "Merlot Riserva 2023" al lotto 240101.
 - Seguire la procedura di collegamento selezionando il lotto e la tipologia appropriati.
 - Dopo aver cliccato "Collega", il sistema aggiornerà le informazioni del lotto.
 
@@ -177,18 +175,20 @@ Un lotto può contenere più tipologie. Ad esempio:
 - È possibile collegare più tipologie allo stesso lotto.
 - Assicurarsi che il totale delle bottiglie non superi il "Numero Bottiglie" del lotto.
 
-⚠️ **CONTROLLO**: Il sistema verifica che il numero di bottiglie non superi il totale del lotto.
+⚠️ **CONTROLLO**: Il sistema verifica che il numero di bottiglie non superi il totale del lotto, e segna un errore in tal caso.
+modificare il lotto, aggiungendo bottiglie per risolvere.
 
 ### 4.4 Modificare un Collegamento
 
-1. Menu → **"Gestione Tipologie"** → **"Modifica Collegamento"**
-2. Selezionare il collegamento da modificare
+1. Menu → **"modifica"** → **"Modifica Collegamento"**
+2. Selezionare il collegamento da modificare, attraverso il codice del lotto
 3. Cambiare il numero di bottiglie
-4. Salvare
+4. il programma indica il numero di bottiglie massime che si possono aggiungere
+5. Salvare
 
 ### 4.5 Eliminare una Tipologia
 
-1. Menu → **"Gestione Tipologie"** → **"Elimina Tipologia"**
+1. Menu → **"elimina"** → **"Elimina Tipologia"**
 2. Selezionare la tipologia
 3. Confermare
 
@@ -208,13 +208,12 @@ Una **vendita effettuata** è un ordine già spedito/consegnato.
 
 **Procedura:**
 1️⃣ **Accedere alle Vendite**
-   - Menu → **"Gestione Vendite"** → **"Nuova Vendita"**
+   - Menu → **"aggiungi"** → **"Nuova Vendita"**
 
 2️⃣ **Compilare i Dati**
 
 | Campo | Descrizione | Esempio |
 |-------|-------------|---------|
-| **Cliente** | Nome cliente o azienda | Ristorante Da Mario |
 | **Lotto** | Codice lotto da cui prelevare | 2024001 |
 | **Tipologia** | Tipo di vino | Merlot |
 | **Numero Bottiglie** | Quantità venduta | 100 |
@@ -238,33 +237,30 @@ Una **vendita programmata** è un ordine futuro non ancora spedito.
 - Le bottiglie vengono **prenotate** ma non ancora sottratte
 
 **Quando Marcare come Effettuata:**
-1. Menu → **"Gestione Vendite"** → **"Modifica Vendita"**
-2. Selezionare la vendita programmata
-3. Cambiare stato da **"Programmata"** a **"Effettuata"**
+1. Menu → **"modifica"** → **"Modifica Vendita"**
+2. Selezionare la vendita programmata dal id-vendita
+3. Spuntare **"Effettuata"**
 4. Salvare
 
 ### 5.2 Visualizzare Tutte le Vendite
 
-1. Menu → **"Gestione Vendite"** → **"Visualizza Vendite"**
+1. Menu → **"Visualizza"** → **"Visualizza Vendite"**
 2. La tabella mostra:
-   - Codice Vendita
-   - Cliente
-   - Data
-   - Lotto e Tipologia
-   - Numero Bottiglie
-   - Stato (Effettuata/Programmata)
+   -  idLotto
+   -  idVendita
+   -  numBottiglie
+   -  stato
+   -  data di vendita
+   -  tipologia
+   -  cliente
+   -  note
 
-**Filtri Disponibili:**
-- Per data (dalla più recente)
-- Per cliente
-- Per stato (Effettuate/Programmate)
+
+### Per ordinare in ordine di data cliccare **"data vendita"** 
 
 ### 5.3 Modificare una Vendita
 
-1. Selezionare la vendita dalla lista
-2. Cliccare **"Modifica"**
-3. Cambiare i dati necessari
-4. Salvare
+1. si può modificare solo lo stato **"effettuata/programmata"** 
 
 ⚠️ **LIMITAZIONI**:
 - Non è possibile modificare lotto e tipologia
@@ -275,21 +271,21 @@ Una **vendita programmata** è un ordine futuro non ancora spedito.
 ⚠️ **ATTENZIONE**: Eliminando una vendita, le bottiglie vengono **riaggiunte** al lotto.
 
 **Procedura:**
-1. Menu → **"Gestione Vendite"** → **"Elimina Vendita"**
-2. Selezionare la vendita
+1. Menu → **"elimina"** → **"Elimina Vendita"**
+2. Selezionare la vendita dal id
 3. Confermare l'eliminazione
 4. Le bottiglie tornano disponibili
 
 ### 5.5 Controllo Scadenze
 
-Il sistema avvisa delle vendite programmate in scadenza (entro 7 giorni).
+Il sistema avvisa delle vendite programmate in scadenza .
 
 **Come Visualizzare:**
-1. Menu → **"Alert Vendite"**
-2. Appare la lista delle vendite programmate in scadenza
-3. Verificare con la produzione la disponibilità
+1. Menu → **"visualizza"**  → **"visualizza vendite in scadenza"**
+2. Appare la lista delle vendite programmate in scadenza o scadute
+3. se sono state effettuate, spuntarle, per togliere le bottiglie.
 
-🔔 **PROMEMORIA AUTOMATICO**: All'avvio del programma, se ci sono vendite in scadenza, appare una notifica.
+⚠️ **ATTENZIONE**: se non vengono spuntate come effettuate, le bottiglie non vengono tolte
 
 ---
 
@@ -300,39 +296,41 @@ Il sistema avvisa delle vendite programmate in scadenza (entro 7 giorni).
 **Quando Usarla**: Per trovare tutte le tipologie e vendite di un lotto specifico.
 
 **Procedura:**
-1. Menu → **"Ricerche"** → **"Ricerca per Lotto"**
-2. Inserire il codice lotto (es. 2024001)
+1. Menu → **"Ricerca"** → **"cerca per Lotto"**
+2. Inserire il codice lotto (es. 240101)
 3. Cliccare **"Cerca"**
 4. Risultati mostrano:
    - Tipologie collegate
    - Numero bottiglie per tipologia
-   - Vendite associate
+   -data di produzione
 
 ### 6.2 Ricerca per Tipologia
 
 **Quando Usarla**: Per vedere tutti i lotti che contengono una specifica tipologia di vino.
 
 **Procedura:**
-1. Menu → **"Ricerche"** → **"Ricerca per Tipologia"**
-2. Selezionare la tipologia dal menu (es. Merlot)
-3. Cliccare **"Cerca"**
-4. Risultati mostrano:
-   - Tutti i lotti con quella tipologia
-   - Numero bottiglie disponibili per lotto
+1. Menu → **"visualizza"** → **"visualizza lotti per Tipologia"**
+2. i risultati mostrano:
+   -   idlotto
+   -   data produzione
+   -   numero bottiglie
+   -   tipologia
 
-### 6.3 Ricerca Vendite per Cliente
+### 6.3 Ricerca per tipologia
 
-1. Menu → **"Ricerche"** → **"Ricerca per Cliente"**
-2. Inserire il nome del cliente
-3. Visualizzare tutte le vendite storiche
+1. Menu → **"Ricerche"** → **"Ricerca per tipologia"**
+2. Inserire il nome della tipologia
+3. Mostra tutti i lotti collegati a questa tipologia
 
 ### 6.4 Ricerca per Data
 
 1. Menu → **"Ricerche"** → **"Ricerca per Data"**
 2. Selezionare:
+   - tipologia
    - Data inizio
    - Data fine
-3. Visualizzare vendite/lotti in quel periodo
+3. premere cerca 
+4. Visualizzare bottiglie vendute in quel periodo
 
 ---
 
@@ -342,39 +340,13 @@ Il sistema avvisa delle vendite programmate in scadenza (entro 7 giorni).
 
 **Per Qualsiasi Tabella:**
 1. Visualizzare i dati desiderati (lotti, vendite, tipologie)
-2. Cliccare su **"Esporta in Excel"**
-3. Scegliere dove salvare il file
-4. Il file Excel si apre automaticamente
+2. Cliccare su **"Salva"**
+3. Scegliere la cartella dove salvare il file
+4. scegliere come chiamarlo
+5. il file viene salvato in excel nella cartella selezionata
 
 📊 **FORMATO**: Il file mantiene tutte le colonne e i filtri applicati.
 
-### 7.2 Stampare un Report
-
-1. Visualizzare i dati da stampare
-2. Cliccare su **"Stampa"**
-3. Selezionare la stampante
-4. Configurare:
-   - Orientamento (Verticale/Orizzontale)
-   - Margini
-5. Cliccare **"Stampa"**
-
-### 7.3 Report Disponibili
-
-#### 7.3.1 Report Giacenze
-Mostra per ogni lotto:
-- Bottiglie totali
-- Bottiglie vendute
-- Bottiglie disponibili
-
-#### 7.3.2 Report Vendite Mensili
-- Totale vendite per mese
-- Suddivisione per tipologia
-- Fatturato (se configurato)
-
-#### 7.3.3 Report Clienti
-- Lista clienti ordinati per volume acquisti
-- Ultimo ordine
-- Totale bottiglie acquistate
 
 ---
 
@@ -414,13 +386,12 @@ Mostra per ogni lotto:
 
 **Possibili Cause e Soluzioni:**
 
-| Problema | Soluzione |
-|----------|-----------|
+| Problema                    | Soluzione |
+|----------                   |-----------|
 | Troppe vendite nel database | Archiviare vendite vecchie |
-| Connessione lenta | Verificare rete aziendale |
-| Computer sovraccarico | Chiudere altri programmi |
+| Connessione lenta           | Verificare rete aziendale |
+| Computer sovraccarico       | Chiudere altri programmi |
 
-**Contatto Tecnico**: admin@azienda.it
 
 ### 8.5 Dati Non Salvati
 
@@ -484,48 +455,17 @@ A: Sì, se il server MySQL è sulla rete locale aziendale.
 
 ## 10. GLOSSARIO
 
-| Termine | Definizione |
-|---------|-------------|
-| **Lotto** | Gruppo di bottiglie prodotte insieme, identificato da un codice univoco |
-| **Tipologia** | Tipo specifico di vino (es. Merlot, Chardonnay) |
-| **Combo** | Collegamento tra lotto e tipologia con numero bottiglie |
-| **Vendita Effettuata** | Ordine già spedito/consegnato |
+| Termine                 | Definizione |
+|---------                |-------------|
+| **Lotto**               | Gruppo di bottiglie prodotte insieme, identificato da un codice univoco |
+| **Tipologia**           | Tipo specifico di vino (es. Merlot, Chardonnay) |
+| **Combo**               | Collegamento tra lotto e tipologia con numero bottiglie |
+| **Vendita Effettuata**  | Ordine già spedito/consegnato |
 | **Vendita Programmata** | Ordine futuro non ancora evaso |
-| **Giacenze** | Numero di bottiglie ancora disponibili |
-| **Dataset** | Insieme di dati visualizzati in tabella |
+| **Giacenze**            | Numero di bottiglie ancora disponibili |
+| **Dataset**             | Insieme di dati visualizzati in tabella |
 
 ---
-
-## 11. CONTATTI E SUPPORTO
-
-### Supporto Tecnico
-- **Email**: supporto@azienda.it
-- **Telefono**: +39 xxx xxx xxxx
-- **Orari**: Lunedì-Venerdì, 9:00-18:00
-
-### Amministratore Sistema
-- **Email**: admin@azienda.it
-- **Per**: Problemi di connessione, permessi, backup
-
-### Formazione
-- **Email**: formazione@azienda.it
-- **Per**: Richieste di formazione aggiuntiva, chiarimenti
-
----
-
-## 12. APPENDICI
-
-### Appendice A: Scorciatoie da Tastiera
-
-| Scorciatoia | Azione |
-|-------------|--------|
-| Ctrl + N | Nuovo elemento |
-| Ctrl + S | Salva |
-| Ctrl + F | Ricerca |
-| Ctrl + P | Stampa |
-| Ctrl + E | Esporta Excel |
-| F5 | Aggiorna visualizzazione |
-| Esc | Annulla operazione |
 
 ### Appendice B: Struttura Database
 
@@ -539,29 +479,12 @@ A: Sì, se il server MySQL è sulla rete locale aziendale.
 
 | Codice | Significato | Azione |
 |--------|-------------|--------|
-| E1001 | Connessione DB fallita | Verificare rete |
-| E1002 | Codice duplicato | Usare codice diverso |
-| E1003 | Dati mancanti | Compilare tutti i campi |
-| E1004 | Bottiglie insufficienti | Verificare giacenze |
+| E1001  | Connessione DB fallita | Verificare rete |
+| E1002  | Codice duplicato | Usare codice diverso |
+| E1003  | Dati mancanti | Compilare tutti i campi |
+| E1004  | Bottiglie insufficienti | Verificare giacenze |
 
 ---
 
-## VERSIONE E AGGIORNAMENTI
 
-**Versione Manuale**: 1.0  
-**Data**: Dicembre 2024  
-**Ultima Modifica**: 30/12/2024
-
-**Changelog:**
-- v1.0 (30/12/2024): Prima versione del manuale
-
----
-
-## NOTE FINALI
-
-Questo manuale viene aggiornato periodicamente. Per suggerimenti o segnalazioni di errori, contattare: formazione@azienda.it
-
----
-
-© 2024 Azienda Vinicola - Tutti i diritti riservati
 
