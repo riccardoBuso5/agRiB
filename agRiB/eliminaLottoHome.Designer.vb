@@ -25,14 +25,15 @@ Partial Class eliminaLottoHome
         ComboBox1 = New ComboBox()
         Label1 = New Label()
         Button1 = New Button()
+        TextBox1 = New TextBox()
         SuspendLayout()
         ' 
         ' ComboBox1
         ' 
         ComboBox1.DropDownStyle = ComboBoxStyle.DropDownList
-        ComboBox1.Font = New Font("Segoe UI", 14F)
+        ComboBox1.Font = New Font("Segoe UI", 14.0F)
         ComboBox1.FormattingEnabled = True
-        ComboBox1.Location = New Point(225, 78)
+        ComboBox1.Location = New Point(150, 41)
         ComboBox1.Margin = New Padding(3, 2, 3, 2)
         ComboBox1.Name = "ComboBox1"
         ComboBox1.Size = New Size(133, 33)
@@ -41,7 +42,7 @@ Partial Class eliminaLottoHome
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Location = New Point(80, 84)
+        Label1.Location = New Point(80, 59)
         Label1.Name = "Label1"
         Label1.Size = New Size(45, 15)
         Label1.TabIndex = 2
@@ -57,6 +58,13 @@ Partial Class eliminaLottoHome
         Button1.Text = "cancella"
         Button1.UseVisualStyleBackColor = True
         ' 
+        ' TextBox1
+        ' 
+        TextBox1.Location = New Point(150, 100)
+        TextBox1.Name = "TextBox1"
+        TextBox1.Size = New Size(200, 23)
+        TextBox1.TabIndex = 2
+        ' 
         ' eliminaLottoHome
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -65,6 +73,7 @@ Partial Class eliminaLottoHome
         Controls.Add(Button1)
         Controls.Add(Label1)
         Controls.Add(ComboBox1)
+        Controls.Add(TextBox1)
         Margin = New Padding(3, 2, 3, 2)
         MinimizeBox = False
         Name = "eliminaLottoHome"
@@ -76,4 +85,5 @@ Partial Class eliminaLottoHome
     Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Button1 As Button
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
 End Class

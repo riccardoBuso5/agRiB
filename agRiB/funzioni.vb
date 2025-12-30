@@ -28,7 +28,7 @@ Module funzioni
             Return conn
         End If
 
-        Dim strConn = leggiDaFile()
+        Dim strConn As String = "server= localhost; database=cantina;user id=root;password=password;port=3306;"
         conn = New MySqlConnection(strConn)
         flag = True
         Return conn
