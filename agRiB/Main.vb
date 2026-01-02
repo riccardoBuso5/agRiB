@@ -150,7 +150,7 @@ Public Class Form1
     End Sub
 
     Private Sub ricPerData_Click(sender As Object, e As EventArgs) Handles ricPerData.Click
-        ricercaPerData.Show()
+        ricercaPerData.Show
     End Sub
 
     Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
@@ -172,4 +172,24 @@ Public Class Form1
 
     End Sub
 
+    Private Sub Button4_Click_1(sender As Object, e As EventArgs) Handles Button4.Click
+        ' Apri il manuale PDF
+        Try
+            ' Usa Application.StartupPath come in leggiDaFile
+            Dim pdfPath As String = IO.Path.Combine(Application.StartupPath, "manuale", "manuale.pdf")
+
+            ' Verifica che il file esista
+            If IO.File.Exists(pdfPath) Then
+                ' Apri il PDF con il programma predefinito
+                Process.Start(New ProcessStartInfo(pdfPath) With {
+                    .UseShellExecute = True
+                })
+            Else
+                MsgBox("Manuale non trovato!" & vbCrLf & "Percorso: " & pdfPath, MsgBoxStyle.Exclamation, "File non trovato")
+            End If
+
+        Catch ex As Exception
+            MsgBox("Errore apertura manuale: " & ex.Message, MsgBoxStyle.Critical, "Errore")
+        End Try
+    End Sub
 End Class

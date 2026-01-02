@@ -8,15 +8,23 @@ Module funzioni
     Public flag = False
     Dim strConn As String = "server=localhost;database=cantina;user id=root;password=password;port=3306;CharSet=utf8;"
     'exe'
-    Public Function leggiDaFile(Optional path As String = ".\paswd.txt") As String
+    Public Function leggiDaFile(Optional path As String = "paswd.txt") As String
         Try
-            Dim fileReader As String = My.Computer.FileSystem.ReadAllText(path)
+            ' Costruisci il percorso completo basato sulla directory dell'exe
+            Dim fullPath As String = IO.Path.Combine(Application.StartupPath, path)
+
+            ' Leggi il file usando il percorso completo
+            Dim fileReader As String = My.Computer.FileSystem.ReadAllText(fullPath)
             Return fileReader.Trim()
+
         Catch ex As FileNotFoundException
-            MsgBox("File " & path & " non trovato!" & vbCrLf & "Creare il file con la stringa di connessione.")
+            MsgBox("File " & path & " non trovato!" & vbCrLf &
+                   "Percorso cercato: " & IO.Path.Combine(Application.StartupPath, path) & vbCrLf &
+                   "Creare il file con la stringa di connessione.",
+                   MsgBoxStyle.Exclamation, "File Mancante")
             Return Nothing
         Catch ex As Exception
-            MsgBox("Errore lettura file: " & ex.Message)
+            MsgBox("Errore lettura file: " & ex.Message, MsgBoxStyle.Critical, "Errore")
             Return Nothing
         End Try
     End Function
@@ -28,7 +36,7 @@ Module funzioni
             Return conn
         End If
         'decommentare prima di pubblicare'
-        'strConn = leggiDaFile()'
+        strConn = leggiDaFile()
 
         Try
             conn = New MySqlConnection(strConn)

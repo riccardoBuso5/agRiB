@@ -30,11 +30,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="agRiB.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Aspose.Cells" Version="24.10.0" />
     <PackageReference Include="ClosedXML" Version="0.104.1" />
     <PackageReference Include="CsvHelper" Version="33.0.1" />
     <PackageReference Include="Microsoft.Data.Analysis" Version="0.21.1" />
     <PackageReference Include="MySql.Data" Version="9.0.0" />
   </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="xcopy &quot;$(ProjectDir)paswd.txt&quot; &quot;$(TargetDir)&quot; /Y /I&#xA;if exist &quot;$(ProjectDir)manuale.pdf&quot; xcopy &quot;$(ProjectDir)manuale.pdf&quot; &quot;$(TargetDir)&quot; /Y /I&#xA;if exist &quot;$(ProjectDir)manuale&quot; xcopy &quot;$(ProjectDir)manuale\*.*&quot; &quot;$(TargetDir)manuale\&quot; /Y /I /E&#xD;&#xA;" />
+  </Target>
 
 </Project>

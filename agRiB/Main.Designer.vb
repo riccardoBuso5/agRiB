@@ -57,12 +57,13 @@ Partial Class Form1
         modifica_tipologia = New Button()
         Button3 = New Button()
         FolderBrowserDialog1 = New FolderBrowserDialog()
+        Button4 = New Button()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' eliminaVendita
         ' 
-        eliminaVendita.Font = New Font("Segoe UI", 12.0F)
+        eliminaVendita.Font = New Font("Segoe UI", 12F)
         eliminaVendita.Location = New Point(1306, 933)
         eliminaVendita.Margin = New Padding(2)
         eliminaVendita.Name = "eliminaVendita"
@@ -73,7 +74,7 @@ Partial Class Form1
         ' 
         ' eliminaTipologia
         ' 
-        eliminaTipologia.Font = New Font("Segoe UI", 12.0F)
+        eliminaTipologia.Font = New Font("Segoe UI", 12F)
         eliminaTipologia.Location = New Point(1306, 705)
         eliminaTipologia.Margin = New Padding(2)
         eliminaTipologia.Name = "eliminaTipologia"
@@ -84,7 +85,7 @@ Partial Class Form1
         ' 
         ' NuovoLotto
         ' 
-        NuovoLotto.Font = New Font("Segoe UI", 12.0F)
+        NuovoLotto.Font = New Font("Segoe UI", 12F)
         NuovoLotto.Location = New Point(982, 587)
         NuovoLotto.Margin = New Padding(2)
         NuovoLotto.Name = "NuovoLotto"
@@ -95,7 +96,7 @@ Partial Class Form1
         ' 
         ' NuovaVendita
         ' 
-        NuovaVendita.Font = New Font("Segoe UI", 12.0F)
+        NuovaVendita.Font = New Font("Segoe UI", 12F)
         NuovaVendita.Location = New Point(982, 828)
         NuovaVendita.Margin = New Padding(2)
         NuovaVendita.Name = "NuovaVendita"
@@ -107,7 +108,7 @@ Partial Class Form1
         ' NuovaTipologia
         ' 
         NuovaTipologia.AllowDrop = True
-        NuovaTipologia.Font = New Font("Segoe UI", 12.0F)
+        NuovaTipologia.Font = New Font("Segoe UI", 12F)
         NuovaTipologia.Location = New Point(982, 705)
         NuovaTipologia.Margin = New Padding(2)
         NuovaTipologia.Name = "NuovaTipologia"
@@ -128,7 +129,7 @@ Partial Class Form1
         DataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken
         DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle1.BackColor = SystemColors.Control
-        DataGridViewCellStyle1.Font = New Font("Segoe UI", 12.0F)
+        DataGridViewCellStyle1.Font = New Font("Segoe UI", 12F)
         DataGridViewCellStyle1.ForeColor = SystemColors.WindowText
         DataGridViewCellStyle1.NullValue = Nothing
         DataGridViewCellStyle1.Padding = New Padding(0, 0, 0, 3)
@@ -138,7 +139,7 @@ Partial Class Form1
         DataGridView1.ColumnHeadersHeight = 80
         DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle2.BackColor = SystemColors.Window
-        DataGridViewCellStyle2.Font = New Font("Segoe UI", 15.0F)
+        DataGridViewCellStyle2.Font = New Font("Segoe UI", 15F)
         DataGridViewCellStyle2.ForeColor = SystemColors.ControlText
         DataGridViewCellStyle2.NullValue = Nothing
         DataGridViewCellStyle2.Padding = New Padding(1)
@@ -168,7 +169,7 @@ Partial Class Form1
         ' 
         ' visualizzaLotti
         ' 
-        visualizzaLotti.Font = New Font("Segoe UI", 12.0F)
+        visualizzaLotti.Font = New Font("Segoe UI", 12F)
         visualizzaLotti.Location = New Point(442, 825)
         visualizzaLotti.Margin = New Padding(2)
         visualizzaLotti.Name = "visualizzaLotti"
@@ -179,7 +180,7 @@ Partial Class Form1
         ' 
         ' visualizzaTipologia
         ' 
-        visualizzaTipologia.Font = New Font("Segoe UI", 12.0F)
+        visualizzaTipologia.Font = New Font("Segoe UI", 12F)
         visualizzaTipologia.Location = New Point(442, 587)
         visualizzaTipologia.Margin = New Padding(2)
         visualizzaTipologia.Name = "visualizzaTipologia"
@@ -190,7 +191,7 @@ Partial Class Form1
         ' 
         ' visualizzaVendita
         ' 
-        visualizzaVendita.Font = New Font("Segoe UI", 12.0F)
+        visualizzaVendita.Font = New Font("Segoe UI", 12F)
         visualizzaVendita.Location = New Point(442, 704)
         visualizzaVendita.Margin = New Padding(2)
         visualizzaVendita.Name = "visualizzaVendita"
@@ -201,7 +202,7 @@ Partial Class Form1
         ' 
         ' eliminaLotto
         ' 
-        eliminaLotto.Font = New Font("Segoe UI", 12.0F)
+        eliminaLotto.Font = New Font("Segoe UI", 12F)
         eliminaLotto.Location = New Point(1306, 822)
         eliminaLotto.Margin = New Padding(2)
         eliminaLotto.Name = "eliminaLotto"
@@ -212,7 +213,7 @@ Partial Class Form1
         ' 
         ' scadenze
         ' 
-        scadenze.Font = New Font("Segoe UI", 12.0F)
+        scadenze.Font = New Font("Segoe UI", 12F)
         scadenze.Location = New Point(653, 703)
         scadenze.Margin = New Padding(2)
         scadenze.Name = "scadenze"
@@ -223,7 +224,7 @@ Partial Class Form1
         ' 
         ' lottiDaRifornire
         ' 
-        lottiDaRifornire.Font = New Font("Segoe UI", 12.0F)
+        lottiDaRifornire.Font = New Font("Segoe UI", 12F)
         lottiDaRifornire.Location = New Point(442, 933)
         lottiDaRifornire.Margin = New Padding(2)
         lottiDaRifornire.Name = "lottiDaRifornire"
@@ -234,7 +235,7 @@ Partial Class Form1
         ' 
         ' modificaVendita
         ' 
-        modificaVendita.Font = New Font("Segoe UI", 12.0F)
+        modificaVendita.Font = New Font("Segoe UI", 12F)
         modificaVendita.Location = New Point(1622, 578)
         modificaVendita.Margin = New Padding(2)
         modificaVendita.Name = "modificaVendita"
@@ -245,7 +246,7 @@ Partial Class Form1
         ' 
         ' visualizza_lotti_per_tipologia
         ' 
-        visualizza_lotti_per_tipologia.Font = New Font("Segoe UI", 12.0F)
+        visualizza_lotti_per_tipologia.Font = New Font("Segoe UI", 12F)
         visualizza_lotti_per_tipologia.Location = New Point(653, 586)
         visualizza_lotti_per_tipologia.Margin = New Padding(2)
         visualizza_lotti_per_tipologia.Name = "visualizza_lotti_per_tipologia"
@@ -257,7 +258,7 @@ Partial Class Form1
         ' collegaLottoTipologia
         ' 
         collegaLottoTipologia.AllowDrop = True
-        collegaLottoTipologia.Font = New Font("Segoe UI", 12.0F)
+        collegaLottoTipologia.Font = New Font("Segoe UI", 12F)
         collegaLottoTipologia.Location = New Point(1622, 933)
         collegaLottoTipologia.Margin = New Padding(2)
         collegaLottoTipologia.Name = "collegaLottoTipologia"
@@ -269,7 +270,7 @@ Partial Class Form1
         ' 
         ' modificaLotto
         ' 
-        modificaLotto.Font = New Font("Segoe UI", 12.0F)
+        modificaLotto.Font = New Font("Segoe UI", 12F)
         modificaLotto.Location = New Point(1622, 745)
         modificaLotto.Margin = New Padding(2)
         modificaLotto.Name = "modificaLotto"
@@ -280,7 +281,7 @@ Partial Class Form1
         ' 
         ' ricercaXlotto
         ' 
-        ricercaXlotto.Font = New Font("Segoe UI", 12.0F)
+        ricercaXlotto.Font = New Font("Segoe UI", 12F)
         ricercaXlotto.Location = New Point(116, 597)
         ricercaXlotto.Margin = New Padding(2)
         ricercaXlotto.Name = "ricercaXlotto"
@@ -291,7 +292,7 @@ Partial Class Form1
         ' 
         ' Button1
         ' 
-        Button1.Font = New Font("Segoe UI", 12.0F)
+        Button1.Font = New Font("Segoe UI", 12F)
         Button1.Location = New Point(115, 726)
         Button1.Margin = New Padding(2)
         Button1.Name = "Button1"
@@ -302,7 +303,7 @@ Partial Class Form1
         ' 
         ' Label1
         ' 
-        Label1.Font = New Font("Microsoft YaHei", 18.0F)
+        Label1.Font = New Font("Microsoft YaHei", 18F)
         Label1.Location = New Point(136, 477)
         Label1.Margin = New Padding(2, 0, 2, 0)
         Label1.Name = "Label1"
@@ -312,7 +313,7 @@ Partial Class Form1
         ' 
         ' Label2
         ' 
-        Label2.Font = New Font("Microsoft YaHei", 18.0F)
+        Label2.Font = New Font("Microsoft YaHei", 18F)
         Label2.Location = New Point(556, 477)
         Label2.Margin = New Padding(2, 0, 2, 0)
         Label2.Name = "Label2"
@@ -322,7 +323,7 @@ Partial Class Form1
         ' 
         ' Label3
         ' 
-        Label3.Font = New Font("Microsoft YaHei", 18.0F)
+        Label3.Font = New Font("Microsoft YaHei", 18F)
         Label3.Location = New Point(1000, 487)
         Label3.Margin = New Padding(2, 0, 2, 0)
         Label3.Name = "Label3"
@@ -332,7 +333,7 @@ Partial Class Form1
         ' 
         ' Label4
         ' 
-        Label4.Font = New Font("Microsoft YaHei", 18.0F)
+        Label4.Font = New Font("Microsoft YaHei", 18F)
         Label4.Location = New Point(1335, 487)
         Label4.Margin = New Padding(2, 0, 2, 0)
         Label4.Name = "Label4"
@@ -342,7 +343,7 @@ Partial Class Form1
         ' 
         ' Label5
         ' 
-        Label5.Font = New Font("Microsoft YaHei", 18.0F)
+        Label5.Font = New Font("Microsoft YaHei", 18F)
         Label5.Location = New Point(1643, 487)
         Label5.Margin = New Padding(2, 0, 2, 0)
         Label5.Name = "Label5"
@@ -352,7 +353,7 @@ Partial Class Form1
         ' 
         ' eliminaCollegamento
         ' 
-        eliminaCollegamento.Font = New Font("Segoe UI", 12.0F)
+        eliminaCollegamento.Font = New Font("Segoe UI", 12F)
         eliminaCollegamento.Location = New Point(1306, 586)
         eliminaCollegamento.Margin = New Padding(2)
         eliminaCollegamento.Name = "eliminaCollegamento"
@@ -363,7 +364,7 @@ Partial Class Form1
         ' 
         ' TextBox1
         ' 
-        TextBox1.Font = New Font("Segoe UI", 11.0F)
+        TextBox1.Font = New Font("Segoe UI", 11F)
         TextBox1.Location = New Point(115, 560)
         TextBox1.Margin = New Padding(2)
         TextBox1.Name = "TextBox1"
@@ -375,7 +376,7 @@ Partial Class Form1
         ComboBox2.DropDownHeight = 400
         ComboBox2.DropDownStyle = ComboBoxStyle.DropDownList
         ComboBox2.DropDownWidth = 340
-        ComboBox2.Font = New Font("Segoe UI", 12.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        ComboBox2.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         ComboBox2.FormattingEnabled = True
         ComboBox2.IntegralHeight = False
         ComboBox2.ItemHeight = 21
@@ -388,7 +389,7 @@ Partial Class Form1
         ' 
         ' ricPerData
         ' 
-        ricPerData.Font = New Font("Segoe UI", 12.0F)
+        ricPerData.Font = New Font("Segoe UI", 12F)
         ricPerData.Location = New Point(117, 914)
         ricPerData.Margin = New Padding(2)
         ricPerData.Name = "ricPerData"
@@ -399,7 +400,7 @@ Partial Class Form1
         ' 
         ' Button2
         ' 
-        Button2.Font = New Font("Segoe UI", 12.0F)
+        Button2.Font = New Font("Segoe UI", 12F)
         Button2.Location = New Point(653, 827)
         Button2.Margin = New Padding(2)
         Button2.Name = "Button2"
@@ -410,7 +411,7 @@ Partial Class Form1
         ' 
         ' modificaCollegamento
         ' 
-        modificaCollegamento.Font = New Font("Segoe UI", 12.0F)
+        modificaCollegamento.Font = New Font("Segoe UI", 12F)
         modificaCollegamento.Location = New Point(1622, 827)
         modificaCollegamento.Margin = New Padding(2)
         modificaCollegamento.Name = "modificaCollegamento"
@@ -421,7 +422,7 @@ Partial Class Form1
         ' 
         ' modifica_tipologia
         ' 
-        modifica_tipologia.Font = New Font("Segoe UI", 12.0F)
+        modifica_tipologia.Font = New Font("Segoe UI", 12F)
         modifica_tipologia.Location = New Point(1622, 655)
         modifica_tipologia.Margin = New Padding(2)
         modifica_tipologia.Name = "modifica_tipologia"
@@ -432,7 +433,7 @@ Partial Class Form1
         ' 
         ' Button3
         ' 
-        Button3.Font = New Font("Segoe UI", 12.0F)
+        Button3.Font = New Font("Segoe UI", 12F)
         Button3.Location = New Point(115, 822)
         Button3.Margin = New Padding(2)
         Button3.Name = "Button3"
@@ -441,16 +442,28 @@ Partial Class Form1
         Button3.Text = "salva"
         Button3.UseVisualStyleBackColor = True
         ' 
+        ' Button4
+        ' 
+        Button4.Font = New Font("Segoe UI", 12F)
+        Button4.Location = New Point(115, 1013)
+        Button4.Margin = New Padding(2)
+        Button4.Name = "Button4"
+        Button4.Size = New Size(146, 54)
+        Button4.TabIndex = 38
+        Button4.Text = "aiuto"
+        Button4.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AccessibleRole = AccessibleRole.None
         AllowDrop = True
-        AutoScaleDimensions = New SizeF(96.0F, 96.0F)
+        AutoScaleDimensions = New SizeF(96F, 96F)
         AutoScaleMode = AutoScaleMode.Dpi
         AutoSize = True
         AutoValidate = AutoValidate.EnableAllowFocusChange
         BackColor = SystemColors.ActiveCaption
-        ClientSize = New Size(1877, 989)
+        ClientSize = New Size(1877, 1078)
+        Controls.Add(Button4)
         Controls.Add(Button3)
         Controls.Add(modifica_tipologia)
         Controls.Add(modificaCollegamento)
@@ -523,5 +536,6 @@ Partial Class Form1
     Friend WithEvents modifica_tipologia As Button
     Friend WithEvents Button3 As Button
     Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
+    Friend WithEvents Button4 As Button
 
 End Class
