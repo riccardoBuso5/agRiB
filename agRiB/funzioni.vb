@@ -129,10 +129,11 @@ Module funzioni
 
     Public Function ricercaPerCodTipo(codTipo As String) As DataTable
         Dim query As String = "SELECT lotto.idlotto, data_produzione, numBott AS numeroBottPerTipologia, nome AS tipologia
-                           FROM lotto
-                           JOIN tipologia_lotto ON lotto.idlotto = tipologia_lotto.id_loto
-                           JOIN tipologia ON tipologia.idtipologia = tipologia_lotto.id_tipologia
-                           WHERE tipologia.idTipologia = @codTipo;"
+                       FROM lotto
+                       JOIN tipologia_lotto ON lotto.idlotto = tipologia_lotto.id_lotto
+                       JOIN tipologia ON tipologia.idtipologia = tipologia_lotto.id_tipologia
+                       WHERE tipologia.idTipologia = @codTipo;"
+
 
         Dim conn As MySqlConnection = Connetti()
         If conn Is Nothing Then Return New DataTable()
