@@ -41,6 +41,10 @@
     <PackageReference Include="MySql.Data" Version="9.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="test\" />
+  </ItemGroup>
+
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="xcopy &quot;$(ProjectDir)paswd.txt&quot; &quot;$(TargetDir)&quot; /Y /I&#xA;if exist &quot;$(ProjectDir)manuale.pdf&quot; xcopy &quot;$(ProjectDir)manuale.pdf&quot; &quot;$(TargetDir)&quot; /Y /I&#xA;if exist &quot;$(ProjectDir)manuale&quot; xcopy &quot;$(ProjectDir)manuale\*.*&quot; &quot;$(TargetDir)manuale\&quot; /Y /I /E&#xD;&#xA;" />
   </Target>

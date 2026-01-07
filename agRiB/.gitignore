@@ -1,24 +1,60 @@
-# Ignore build outputs
-/bin/
-/obj/
+# Build outputs
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.lis
+*.log
+
+#cartelle di build
+.db/
+.installer/
+.My Project/
+.MySql/
+
 
 # Visual Studio / VB.NET user files
 *.user
 *.suo
 *.userosscache
+*.sln.docstates
 
-# Ignore generated publish profiles and local settings
-My Project/PublishProfiles/
-
-# Ignore password/config files
-paswd.txt
-
-# NuGet packages and nupkg outputs
-*.nupkg
-
-# VS Code, Rider, etc.
+# Visual Studio IDE
+.vs/
 .vscode/
 .idea/
 
-# Other
-*.vs/
+# Generated publish profiles and local settings
+My Project/PublishProfiles/
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+
+# Build directories
+Debug/
+Release/
+x64/
+x86/
+
+# IDE specific files
+*.DotSettings
+*.DotSettings.user
+*.iml
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Sensitive files
+paswd.txt
+*.local
+
+# Temporary files
+*.tmp
+*.temp
+~*
+.swp
+*~
