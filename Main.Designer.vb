@@ -58,6 +58,7 @@ Partial Class Form1
         Button3 = New Button()
         FolderBrowserDialog1 = New FolderBrowserDialog()
         Button4 = New Button()
+        Dim tableLayout As TableLayoutPanel = New TableLayoutPanel()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -459,6 +460,7 @@ Partial Class Form1
         AllowDrop = True
         AutoScaleDimensions = New SizeF(96F, 96F)
         AutoScaleMode = AutoScaleMode.Dpi
+        AutoScroll = True
         AutoSize = True
         AutoValidate = AutoValidate.EnableAllowFocusChange
         BackColor = SystemColors.ActiveCaption

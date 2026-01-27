@@ -1,8 +1,9 @@
+
 ; Script Installer per agRiB
 ; Creato con Inno Setup 6
 
 #define MyAppName "agRiB"
-#define MyAppVersion "1.0.0"
+#define MyAppVersion "2.0.0"
 #define MyAppPublisher "Azienda Vinicola"
 #define MyAppExeName "agRiB.exe"
 
@@ -28,16 +29,17 @@ Name: "italian"; MessagesFile: "compiler:Languages\Italian.isl"
 Name: "desktopicon"; Description: "Crea un'icona sul desktop"; GroupDescription: "Icone aggiuntive:"
 
 [Files]
-; Tutti i file dalla cartella Release
-Source: "bin\Release\net9.0-windows\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+; CORREZIONE: Percorso aggiornato per .NET 9 e Windows 8.0
+Source: "bin\Release\net9.0-windows8.0\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
-; File opzionali
-Source: "manuale.pdf"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
+; File manuale dalla cartella corretta
+Source: "manuale\manuale.pdf"; DestDir: "{app}\manuale"; Flags: ignoreversion skipifsourcedoesntexist
+Source: "manuale\manuale.md"; DestDir: "{app}\manuale"; Flags: ignoreversion skipifsourcedoesntexist
 Source: "LICENSE.txt"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
-Name: "{group}\Manuale Utente"; Filename: "{app}\manuale.pdf"; Check: FileExists(ExpandConstant('{app}\manuale.pdf'))
+Name: "{group}\Manuale Utente"; Filename: "{app}\manuale\manuale.pdf"; Check: FileExists(ExpandConstant('{app}\manuale\manuale.pdf'))
 Name: "{group}\Configurazione Database"; Filename: "notepad.exe"; Parameters: """{app}\paswd.txt"""
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
@@ -92,6 +94,7 @@ begin
   MsgBox('Questo installer installerà agRiB - Gestionale Cantina.' + #13#10#13#10 + 
          'Requisiti:' + #13#10 + 
          '- MySQL Server 5.7 o superiore' + #13#10 + 
-         '- Windows 10 o superiore', 
+         '- Windows 8 o superiore' + #13#10 +
+         '- .NET 9.0 Runtime', 
          mbInformation, MB_OK);
 end;
